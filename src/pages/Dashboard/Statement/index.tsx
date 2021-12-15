@@ -26,7 +26,7 @@ const StatementItem = ({user, value, type, updatedAt}: StatementItem) => {
                     {value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}
                 </p>
                 <p className="">{type === 'pay' ? `Pago a `: `Recebido de`} <strong>{user.firstName} {user.lastName}</strong></p>
-                <p className="">{format(updatedAt, "dd/MM/yyyy 'às' HH:mm'h'")}</p>
+                <p className="">{format(new Date(updatedAt), "dd/MM/yyyy 'às' HH:mm'h'")}</p>
             </StatementItemInfo>
         </StatementItemContainer>
     )
@@ -38,7 +38,7 @@ const Statement = () => {
  
     const getAlltransactions = async () =>{
         const {data} = await transactions();
-        setStatements(data);
+        setStatements(data.transactions);
 
     }
 
@@ -48,7 +48,7 @@ const Statement = () => {
 
     return (
         <StatementContainer>
-            {statements && statements.map(statement => <StatementItem {...statement}/>)}
+            {statements.length > 0 && statements.map(statement => <StatementItem {...statement}/>)}
         </StatementContainer>
     )
 }
