@@ -31,8 +31,8 @@ const Dashboard = () => {
         try {
             const {data} = await pay(key)
             
-            if(data.msg){
-                alert(data.msg)
+            if(data.mag){
+                alert(data.mag)
                 return
             }
 
