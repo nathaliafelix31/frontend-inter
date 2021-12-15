@@ -1,6 +1,6 @@
 <h2> 💻 Semana Frontend Inter - Desenvolvendo um aplicativo 📱 </h2>
 
-Desenvolvimento de um aplicativo para o gerenciamento de transações financeiras. Criado utilizando o ambiente desenvovimento Visual Studio Code.
+Desenvolvimento de um aplicativo para o gerenciamento de transações financeiras. Criado utilizando o ambiente de desenvovimento Visual Studio Code.
 
 Funcionalidades: 
 
