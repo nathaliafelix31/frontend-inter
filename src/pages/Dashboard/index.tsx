@@ -1,15 +1,25 @@
 import {DashboardBackground, BodyContainer, InlineContainer, InlineTitle} from './styles';
+import {useEffect} from 'react';
 
 import Header from '../../components/Header';
 import Card from '../../components/Card';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import useAuth from '../../hooks/useAuth';
 
 import Statement from './Statement';
 
 const Dashboard = () => {
 
-    const wallet = 1000.00
+    const {user, getCurrentUser} = useAuth();
+    const wallet = user?.wallet || 0;
+    useEffect(()=> {
+        getCurrentUser()
+    }, [])
+
+    if(!user){
+        return null
+    }
 
     return (
         <DashboardBackground>

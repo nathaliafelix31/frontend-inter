@@ -1,6 +1,9 @@
+import {useState, useEffect} from 'react';
+
 import {StatementItemContainer, StatementItemImage, StatementItemInfo, StatementContainer} from './styles';
 import {FiDollarSign} from 'react-icons/fi'
 import {format} from 'date-fns';
+import {transactions} from '../../../services/resources/pix';
 
 interface StatementItem {
     user: {
@@ -31,29 +34,21 @@ const StatementItem = ({user, value, type, updatedAt}: StatementItem) => {
 
 const Statement = () => {
 
-    const statements: StatementItem[] = [
-        {
-            user:{
-                firstName: 'Nathália',
-                lastName: 'Félix'
-            },
-            value: 250.00,
-            type: 'pay',
-            updatedAt: new Date()
-        },
-        {
-            user:{
-                firstName: 'Wesley',
-                lastName: 'Rodrigues'
-            },
-            value: 270.00,
-            type: 'received',
-            updatedAt: new Date()
-        }
-    ]
+    const [statements, setStatements] = useState<StatementItem[]>([]);
+ 
+    const getAlltransactions = async () =>{
+        const {data} = await transactions();
+        setStatements(data);
+
+    }
+
+    useEffect(()=>{
+        getAlltransactions();
+    }, [])
+
     return (
         <StatementContainer>
-            {statements.map(statement => <StatementItem {...statement}/>)}
+            {statements && statements.map(statement => <StatementItem {...statement}/>)}
         </StatementContainer>
     )
 }
